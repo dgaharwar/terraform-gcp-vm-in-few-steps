@@ -1,3 +1,11 @@
+variable "project" {
+    type = string
+}
+
+variable "region" {
+    type = string
+}
+
 variable "gcp_private_key" { 
   type = string 
 } 
@@ -8,4 +16,4 @@ variable "gcp_cred" {
 
 locals {
   credential = merge(var.gcp_cred, {private_key = "${var.gcp_private_key}"}) 
-}
+} 
