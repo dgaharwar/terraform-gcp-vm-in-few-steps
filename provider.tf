@@ -1,6 +1,15 @@
 # Specify the provider (GCP, AWS, Azure)
-provider "google" {
-credentials = "${file("credentials.json")}"
-project = "ac-shared-playground"
-region = "us-central1"
+terraform {
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "3.84.0"
+    }
+  }
+} 
+
+provider "google" { 
+  project     = var.project 
+  region      = var.region 
+  credentials = jsonencode(local.credential) 
 }
