@@ -2,10 +2,16 @@ resource "google_compute_instance" "default" {
   name         = "virtual-machine-from-terraform"
   machine_type = "f1-micro"
   zone         = "us-central1-a"
+  user_data    = <<-EOF
+  #cloud-config
+  runcmd:
+  - <%=instance.cloudConfig.agentInstall%>
+  - <%=instance.cloudConfig.finalizeServer%>
+  EOF
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-9"
+      image = "ubuntu-os-cloud/ubuntu-2004-lts"
     }
   }
 
