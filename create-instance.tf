@@ -1,19 +1,24 @@
+data "template_file" "linux-metadata" {
+template = <<EOF
+#cloud-config
+runcmd:
+- <%=instance.cloudConfig.agentInstall%>
+- <%=instance.cloudConfig.finalizeServer%>
+EOF
+}
+
 resource "google_compute_instance" "default" {
   name         = "<%=instance.name%>"
   machine_type = "f1-micro"
   zone         = "us-central1-a"
-  user_data    = <<-EOF
-  #cloud-config
-  runcmd:
-  - <%=instance.cloudConfig.agentInstall%>
-  - <%=instance.cloudConfig.finalizeServer%>
-  EOF
 
   boot_disk {
     initialize_params {
       image = "ubuntu-os-cloud/ubuntu-2004-lts"
     }
   }
+  
+  metadata_startup_script = data.template_file.linux-metadata.rendered
 
   network_interface {
     network = "default"
