@@ -1,5 +1,5 @@
 resource "google_compute_instance" "default" {
-  name         = "virtual-machine-from-terraform"
+  name         = "<%=instance.name%>"
   machine_type = "f1-micro"
   zone         = "us-central1-a"
   user_data    = <<-EOF
