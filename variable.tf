@@ -17,6 +17,7 @@ variable "gcp_cred" {
 variable "vm_name" {
     type = string
     default = "<%= instance.name%>"
+}
 
 locals {
     credential = merge(var.gcp_cred, {private_key = "${var.gcp_private_key}"}) 
