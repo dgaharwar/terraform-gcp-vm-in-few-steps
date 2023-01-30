@@ -8,7 +8,7 @@ EOF
 }
 
 resource "google_compute_instance" "default" {
-  name         = "<%=instance.name%>"
+  name         = "var.vmName"
   machine_type = "f1-micro"
   zone         = "us-central1-a"
 
