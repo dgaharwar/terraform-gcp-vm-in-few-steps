@@ -1,8 +1,8 @@
-variable "project" {
+variable "gcp_project" {
     type = string
 }
 
-variable "region" {
+variable "gcp_region" {
     type = string
 }
 
