@@ -1,11 +1,11 @@
-data "template_file" "linux-metadata" {
-template = <<EOF
+#data "template_file" "linux-metadata" {
+#template = <<EOF
 #cloud-config
-runcmd:
-- <%=instance.cloudConfig.agentInstall%>
-- <%=instance.cloudConfig.finalizeServer%>
-EOF
-}
+#runcmd:
+#- <%=instance.cloudConfig.agentInstall%>
+#- <%=instance.cloudConfig.finalizeServer%>
+#EOF
+#}
 
 resource "google_compute_instance" "default" {
   name         = var.vm_name
@@ -18,7 +18,7 @@ resource "google_compute_instance" "default" {
     }
   }
   
-  metadata_startup_script = data.template_file.linux-metadata.rendered
+  #metadata_startup_script = data.template_file.linux-metadata.rendered
 
   network_interface {
     network = "default"
