@@ -29,7 +29,7 @@ resource "google_compute_instance" "default" {
 }
 
 resource "google_compute_firewall" "http-server" {
-  name    = "default-allow-http-terraform"
+  name    = "${var.vm_name}-default-allow-http-terraform"
   network = "default"
 
   allow {
