@@ -16,7 +16,6 @@ variable "gcp_cred" {
 
 variable "vm_name" {
     type = string
-    default = "<%= instance.name%>"
 }
 
 locals {
